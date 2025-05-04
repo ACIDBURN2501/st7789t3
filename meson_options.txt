@@ -1,0 +1,1 @@
+option('assetdir', type: 'string', value: '', description: 'Override path to splash assets')
