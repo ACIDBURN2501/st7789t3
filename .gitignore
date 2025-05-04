@@ -1,0 +1,30 @@
+# Build artifacts
+/build/
+/build-*/
+*.o
+*.a
+*.so
+*.exe
+
+# Meson
+meson-logs/
+compile_commands.json
+
+# Doxygen
+doc/doxygen/html/
+doc/doxygen/xml/
+
+# Sphinx
+doc/sphinx/_build/
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+.DS_Store
+
+# Logs and misc
+*.log
+*.bak
