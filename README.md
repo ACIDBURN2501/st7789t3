@@ -44,12 +44,3 @@ sudo systemctl daemon-reexec
 sudo systemctl enable display.service
 ```
 
-## Project Structure
-
-- `src/` - C source files
-- `include/` - Public headers
-- `graphics/` - Image loader (stb_image)
-- `tests/` - Unit tests (Unity)
-- `doc/` - Doxygen + Sphinx documentation
-- `assets/` - Splash image and runtime assets
-
