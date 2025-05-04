@@ -28,3 +28,6 @@ doc/sphinx/_build/
 # Logs and misc
 *.log
 *.bak
+
+# clang-format & clangd
+.cache/
