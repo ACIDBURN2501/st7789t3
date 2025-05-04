@@ -10,6 +10,12 @@
 meson-logs/
 compile_commands.json
 
+# Meson subprojects
+unity/
+packagecache/
+libpng-*/
+freetype-*/
+
 # Doxygen
 doc/doxygen/html/
 doc/doxygen/xml/
