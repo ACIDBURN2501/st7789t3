@@ -1,46 +1,76 @@
-# Display Driver
+# st7789t3_driver
 
-This project provides a modular, reusable C-based driver and rendering system for SPI-based LCD displays (specifically the ST7789), intended for use on embedded Linux systems such as the Raspberry Pi.
+A reusable C driver library for the ST7789T3 SPI LCD display, designed for embedded Linux platforms like the Raspberry Pi CM4. It supports:
 
-It supports:
+- Initialization of the ST7789T3 display
+- Rendering RGB565 pixel buffers
+- Text rendering using FreeType
+- Image rendering (PNG) via stb_image
+- Framebuffer-style drawing via `gfx`
 
-- **ST7789 LCD driver** with RGB565 frame rendering
-- **FreeType font rendering** using UTF-8 strings
-- **Image loading** via stb_image with RGB565 scaling
-- **Framebuffer and text buffer support**
-- **Optional boot splash screen with fallback error messaging**
-- **Unit testing** using Unity and Meson
-- **Cross-compilation** and `rsync` deployment to Raspberry Pi
-- **Documentation** via Doxygen + Sphinx + Breathe
+## 📦 Integration
 
-## Getting Started
+### Option 1: As a Meson Subproject
 
-```bash
-./build.sh setup      # Configure Meson
-./build.sh build      # Compile the project
-./build.sh test       # Run unit tests
-./build.sh install    # Install binary and assets
-./build.sh cross      # Cross-compile for Raspberry Pi
-./build.sh deploy     # Deploy to a Raspberry Pi using rsync
+Add this project as a subproject in your `subprojects/` directory:
+
+```
+project_root/
+├── subprojects/
+│   └── st7789t3_driver/
 ```
 
-## Documentation
+Then in your `meson.build`:
+```meson
+st7789t3_dep = dependency('st7789t3_driver')
+```
 
-To build developer and API documentation:
+And in your C code:
+```c
+#include <st7789t3_driver.h>
 
+st7789t3_init(spi_fd, gpio_dc, gpio_rst);
+st7789t3_show_splash("/boot/splash.png");
+st7789t3_show_text("Booting...", 0xFFFF, 0x0000);
+```
+
+### Option 2: Install System-Wide
+
+Install the library and headers:
 ```bash
-doxygen Doxyfile
+sudo ninja -C build install
+```
+
+Use `pkg-config` to link:
+```bash
+pkg-config --cflags --libs st7789t3_driver
+```
+
+Then compile:
+```bash
+gcc main.c $(pkg-config --cflags --libs st7789t3_driver)
+```
+
+## ✅ Dependencies
+
+- FreeType (via wrap or `libfreetype6-dev`)
+- zlib (for PNG decompression)
+- stb_image (vendored as subproject)
+- Unity (for tests, optional)
+
+## 🧪 Tests
+
+Run unit tests:
+```bash
+meson setup build
+meson test -C build
+```
+
+## 📚 Documentation
+
+See `doc/sphinx/source/index.rst` for user and API documentation.
+Build docs:
+```bash
 cd doc/sphinx
 make html
 ```
-
-## Auto-Start at Boot
-
-To run the display driver automatically at boot:
-
-```bash
-sudo cp display.service /etc/systemd/system/
-sudo systemctl daemon-reexec
-sudo systemctl enable display.service
-```
-
