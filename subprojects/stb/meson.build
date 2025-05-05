@@ -5,3 +5,4 @@ stb_dep = declare_dependency(
 )
 
 meson.override_dependency('stb', stb_dep)
+
