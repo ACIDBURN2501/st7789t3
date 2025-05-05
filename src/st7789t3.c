@@ -3,7 +3,7 @@
  * @brief ST7789 display driver implementation
  */
 
-#include "../include/st7789.h"
+#include "../include/st7789t3.h"
 
 void
 st7789_init(int spi_fd, int gpio_dc, int gpio_rst)

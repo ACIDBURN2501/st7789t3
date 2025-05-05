@@ -3,8 +3,10 @@
  * @brief Load and scale images using stb_image to RGB565 format.
  */
 #define STB_IMAGE_IMPLEMENTATION
-#include "../include/image_loader.h"
+
 #include "../subprojects/stb/stb_image.h"
+
+#include "../include/image_loader.h"
 
 int
 image_load_rgb565(const char *path, uint16_t *out_buf, int dst_w, int dst_h)
@@ -12,7 +14,7 @@ image_load_rgb565(const char *path, uint16_t *out_buf, int dst_w, int dst_h)
         int w, h, channels;
         unsigned char *data =
             stbi_load(path, &w, &h, &channels, 3); // force RGB
-        if (!data || !out_buf) {
+        if (!data || !out_buf || out_buf == NULL) {
                 return -1;
         }
 
