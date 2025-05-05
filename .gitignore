@@ -17,11 +17,10 @@ libpng-*/
 freetype-*/
 
 # Doxygen
-doc/doxygen/html/
-doc/doxygen/xml/
+doc/sphinx/doxygen/
 
 # Sphinx
-doc/sphinx/_build/
+doc/sphinx/build/
 
 # Editor files
 *.swp
