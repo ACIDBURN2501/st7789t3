@@ -1,4 +1,4 @@
-# st7789t3_driver (WIP)
+# st7789t3_driver (Not finished)
 
 A reusable C driver library for the ST7789T3 SPI LCD display, designed for embedded Linux platforms like the Raspberry Pi CM4. It supports:
 
